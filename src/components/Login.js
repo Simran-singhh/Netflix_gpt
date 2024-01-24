@@ -1,27 +1,73 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { checkValidateData } from '../utils/validate';
+import { auth } from '../utils/firebaseConfig';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword ,updateProfile} from "firebase/auth";
+import { useDispatch } from 'react-redux'
+import { addUser } from '../utils/userSlice'
+import { BACKGROUND_COVER } from '../utils/constants';
+
 const Login = () => {
+  const dispatch=useDispatch()
+    
     const[isSignInForm,setisSignInForm]=useState(true);
     const[error,seterror]=useState("")
     const email=useRef(null)
-    const name=useRef('')
+    const name=useRef(' ')
     const password=useRef(null)
     const toggleSignInForm=()=>{
         setisSignInForm(!isSignInForm)
+        seterror('')
     }
     const handleButtonClick=()=>{
         //console.log(email.current.value)
         const message=checkValidateData(email.current.value,password.current.value,name.current.value)
         console.log(message)
-        if(message!=null)seterror(message)
-        else seterror("")
+        seterror(message)
+        if(message && !isSignInForm)return;
+         seterror("")
+         if(!isSignInForm){
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => {
+             // Signed up 
+             const user = userCredential.user;
+
+             updateProfile(auth.currentUser, {
+                displayName: name.current.value, photoURL: ""
+              }).then(() => {
+                const {uid,email,displayName} = auth.currentUser;//contains updated values of the user
+              dispatch(addUser({uid:uid,email:email,displayName:displayName}))
+               
+              }).catch((error) => {
+                seterror(error.message)
+              });
+               
+              })
+            .catch((error) => {
+             const errorCode = error.code;
+             const errorMessage = error.message;
+             seterror(errorCode+"-"+errorMessage)
+             });
+         }else{
+            signInWithEmailAndPassword(auth,  email.current.value, password.current.value)
+              .then((userCredential) => {
+              // Signed in 
+             const user = userCredential.user;
+             console.log(user)
+             
+              })
+              .catch((error) => {
+                // const errorCode = error.code;
+                // const errorMessage = error.message;
+                seterror("Incorrect email or password")
+                });
+         }
     } 
       return (
     <div >
        <Header/>
        <div className='absolute'>
-       <img alt="" aria-hidden="true" data-uia="nmhp-card-hero+background+image" src="https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/IN-en-20240115-trifectadaily-perspective_alpha_website_small.jpg" srcset="https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/IN-en-20240115-trifectadaily-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/IN-en-20240115-trifectadaily-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/IN-en-20240115-trifectadaily-perspective_alpha_website_large.jpg 1800w" class="default-ltr-cache-1jxs5rh e13sg9vu0"></img>
+       <img alt="" aria-hidden="true" data-uia="nmhp-card-hero+background+image" src={BACKGROUND_COVER}></img>
        </div>
 
        <form onSubmit={(e)=>e.preventDefault()} className='absolute w-3/12 bg-black  p-10 my-36 mx-auto bg-opacity-80 right-0 left-0 '>
