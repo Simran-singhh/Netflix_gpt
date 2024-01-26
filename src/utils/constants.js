@@ -6,6 +6,9 @@ export const API_Options={
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYTU0M2E3ZDdiYmViMjBkM2IzYTNhNTQxZWYwMTM3OCIsInN1YiI6IjY1YjE1MTRjYjc2Y2JiMDE5NDJiZDdhMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o2nCLnz_eWsMqMVwfzJ99kvjXOFw36DA4TI7loYvYN0'
+      Authorization: 'Bearer '+process.env.REACT_APP_TMDB_KEY
     }
   };
+
+  export const IMG_CDN_URL='https://image.tmdb.org/t/p/w500/';
+  export const OPENAI_API_KEY=process.env.REACT_APP_OPENAI_KEY;

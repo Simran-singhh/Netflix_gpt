@@ -4,8 +4,8 @@ export const checkValidateData= (email,password,name) => {
  const isemailvalid=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
  const ispasswordvalid=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
 //  let isnamevalid=true;
-console.log("name",name)
- if(name!=' ') {const isnamevalid=/\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/.test(name)
+
+ if(name!=='notauser') {const isnamevalid=/\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/.test(name)
                    if(!isnamevalid) return "! Name must start from capital letter"
 }
  if(!isemailvalid) return "! Email is not valid";

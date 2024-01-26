@@ -6,6 +6,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword ,updateProfil
 import { useDispatch } from 'react-redux'
 import { addUser } from '../utils/userSlice'
 import { BACKGROUND_COVER } from '../utils/constants';
+import { toggleGptSearchView } from '../utils/gptSlice';
 
 const Login = () => {
   const dispatch=useDispatch()
@@ -13,16 +14,18 @@ const Login = () => {
     const[isSignInForm,setisSignInForm]=useState(true);
     const[error,seterror]=useState("")
     const email=useRef(null)
-    const name=useRef(' ')
+    const name=useRef('notauser')
     const password=useRef(null)
     const toggleSignInForm=()=>{
         setisSignInForm(!isSignInForm)
+       
         seterror('')
     }
     const handleButtonClick=()=>{
-        //console.log(email.current.value)
+      
+        
         const message=checkValidateData(email.current.value,password.current.value,name.current.value)
-        console.log(message)
+      
         seterror(message)
         if(message && !isSignInForm)return;
          seterror("")
@@ -53,7 +56,7 @@ const Login = () => {
               .then((userCredential) => {
               // Signed in 
              const user = userCredential.user;
-             console.log(user)
+            
              
               })
               .catch((error) => {
