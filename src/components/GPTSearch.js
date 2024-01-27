@@ -7,10 +7,11 @@ const GPTSearch = () => {
   return (
     <div>
         <div className='fixed -z-10 '>
-       <img alt="" aria-hidden="true" className='-mt-30 w-full h-full' data-uia="nmhp-card-hero+background+image" src={BACKGROUND_COVER} ></img>
+       <img alt="" aria-hidden="true" className='h-screen w-screen object-cover  md:-mt-30   object-fit' data-uia="nmhp-card-hero+background+image" src={BACKGROUND_COVER} ></img>
        </div>
+       <div className='pt-[20%] md:pt-0'>
       <GPTSearchBar/>
-     
+      </div>
     </div>
   )
 }

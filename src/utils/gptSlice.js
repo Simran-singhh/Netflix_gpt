@@ -11,9 +11,7 @@ const gptSlice=createSlice({
      reducers:{
         toggleGptSearchView:(state,action)=>{
            
-           if(action.payload)
-           {state.showGptSearch=action.payload
-             return}
+          
            
            state.showGptSearch=!state.showGptSearch
         },

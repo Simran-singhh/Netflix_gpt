@@ -45,13 +45,13 @@ const GPTSearchBar = () => {
   return (
     <div className=''>
     <div className='  p-6 ml-20  pt-[10%] flex justify-center '>
-      <form className=' w-2/3 bg-black grid grid-cols-12 rounded-lg' onSubmit={(e)=>e.preventDefault()}>
+      <form className=' md:w-2/3  bg-black grid grid-cols-12 rounded-lg' onSubmit={(e)=>e.preventDefault()}>
         <input type="text" ref={searchText} className=' col-span-10 p-2 m-3 text-black border-white rounded-xl'  placeholder='what suggestions do you need?'/>
-        <button className='col-span-2  bg-red-600 hover:bg-red-700 bg-opacity-70 text-white m-3 rounded-lg' onClick={handleGptSearchClick}>Search</button>
+        <button className='col-span-2  bg-red-600 hover:bg-red-700 bg-opacity-70 text-white md:text-md text-sm md:m-3 ml-1 my-3 mr-2 rounded-xl p-1 md:rounded-lg' onClick={handleGptSearchClick}>Search</button>
       </form>
      
     </div>
-    {error && <span className=' text-lg px-2 py-2 -mt-4 ml-[350px] bg-gradient-to-r from bg-red-100 text-red-600 font-bold'>{error}</span>}
+    {error && <span className=' xl:text-lg lg:text-md md:text-sm text-xs px-2 py-2 xl:-mt-4 -mt-1 xl:ml-[350px]  md:ml-[250px] sm:ml-[230px]  ml-[160px]  bg-gradient-to-r from bg-red-100  text-red-600 font-bold'>{error}</span>}
      {movieNames && <GPTMovieSuggestions search={searchText.current.value}/>}
     </div>
   
