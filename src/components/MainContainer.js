@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import VideoTitle from './VideoTitle'
 import VideoBackground from './VideoBackground'
 
+
 const MainContainer = () => {
     const movies=useSelector(store=>store.movies?.nowPlayingMovies)
     if (!movies) return;
@@ -12,6 +13,7 @@ const MainContainer = () => {
     <div className='bg-gradient-to-r from-black '>
       <VideoTitle title={original_title} overview={overview}/>
       <VideoBackground movieId={id}/>
+     
     </div>
   )
 }

@@ -12,7 +12,7 @@ const MovieList = ({title,movies}) => {
     <div className=' md:pl-10 pl-5 lg:mt-10  mt-7' >
         <h1 className='lg:text-2xl md:text-xl text-lg font-bold text-white pl-4'>{title}</h1>
        <div className='flex  overflow-x-hidden hover:overflow-x-scroll'>
-      <div>
+      
        <div className='flex '>
         {movies && movies.map( movie =>movie.poster_path&&(
         <>
@@ -20,7 +20,7 @@ const MovieList = ({title,movies}) => {
          </>
         )
         )}
-         </div>
+         
       </div>
        
        

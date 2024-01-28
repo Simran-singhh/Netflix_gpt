@@ -84,7 +84,7 @@ const Login = () => {
         <h1 className='font-bold text-3xl py-4 text-white text-opacity-100'>{isSignInForm?"Sign In ":"Sign Up"}</h1>
         {!isSignInForm && <input type="text" ref={name} placeholder="Name" className='md:p-4 p-3 md:my-4 my-3 w-full border-radius-sm  bg-[#333] text-white rounded-md'/>}
         <input type="text" ref={email} placeholder="Email address" className='md:p-4 p-3 md:my-4 my-3  w-full border-radius-sm bg-[#333]  text-white rounded-md'/>
-        <input type="text" ref={password}  placeholder="Password" className='md:p-4  p-3 md:my-4 my-3 w-full bg-[#333] text-white rounded-md'/>
+        <input type="password" ref={password}  placeholder="Password" className='md:p-4  p-3 md:my-4 my-3 w-full bg-[#333] text-white rounded-md'/>
         <p className=' text-sm px-2 text-red-500 font-semibold'>{error}</p>
         <button className='md:p-4 p-2 md:my-6 my-5 bg-red-600 w-full rounded-md text-white' onClick={handleButtonClick}>{isSignInForm?"Sign In":"Sign Up"}</button>
         <span className='py-4 text-sm md:text-md text-[#737373]'>{isSignInForm?"New to Netflix?":"Already a User?"}</span>
